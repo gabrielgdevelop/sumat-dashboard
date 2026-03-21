@@ -22,15 +22,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($contribuytentes as $contribuyente)
+                            @foreach($contribuyentes as $contribuyente)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $contribuyente->nombre }} {{ $contribuyente->apellido }} </td>
+                                <td>{{ $contribuyente->dni }}</td>
+                                <td>{{ $contribuyente->telefono }}</td>
+                                <td>{{ $contribuyente->correo }}</td>
+                                <td>{{ $contribuyente->fecha_evento }}</td>
+                                <td>{{ $contribuyente->ubicacion_evento }}</td>
+                                <td>
+                                    {{ $contribuyente->aceptado ? 'Aceptado' : 'Rechazado' }}
+                                    <form action="{{ route('contribuyente.update', $contribuyente->id) }}">
+                                        @csrf 
+                                        @method('PUT')
+                                        <input type="text" value="true" name="aceptado" hidden>
+                                        <input type="submit" value="si">
+                                    </form>
+                                    <form action="{{ route('contribuyente.update', $contribuyente->id) }}">
+                                        @csrf 
+                                        @method('PUT')
+                                        <input type="text" value="" name="aceptado" hidden>
+                                        <input type="submit" value="no">
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

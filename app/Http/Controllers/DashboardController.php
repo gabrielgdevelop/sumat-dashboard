@@ -13,8 +13,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
-        return view('dashboard');
+        $contribuyentes = Contribuyente::orderByDesc('id')->paginate(10);
+        return view('dashboard', compact(['contribuyentes']));
     }
 
     /**
