@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('dni', 10)->unique();
             $table->string('telefono', 11)->unique();
             $table->string('correo', 100)->unique();
-            $table->string('rif', 11)->unique();
             $table->string('ubicacion_evento', 100);
+            $table->string('rif', 11)->unique();
             $table->date('fecha_evento', 10);
             $table->string('tipo_evento', 255);
             $table->boolean('aceptado')->default(false);
