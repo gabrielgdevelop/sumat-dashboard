@@ -26,9 +26,11 @@ class ContribuyenteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Contribuyente $contribuyente)
+    public function show($id)
     {
-        //
+        $contribuyente = Contribuyente::findOrFail($id);
+        
+        return view('contribuyentes.show', compact('contribuyente'));
     }
 
     /**

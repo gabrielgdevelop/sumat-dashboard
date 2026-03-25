@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 ">
+        <div class="max-w-7xl mx-auto sm:px-6">
             <div class="overflow-hidden shadow-sm">
                 <div class="text-gray-100 ">
                     <table class="bg-gray-800 rounded-lg w-full">
