@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('rif', 11)->unique();
             $table->date('fecha_evento', 10);
             $table->string('tipo_evento', 255);
-            $table->boolean('aceptado')->default(false);
+            $table->string('aceptado')->default('en espera');
             $table->timestamps();
         });
     }

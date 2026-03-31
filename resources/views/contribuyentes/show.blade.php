@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 px-1">
         <div class="max-w-3xl mx-auto sm:px-6 bg-gray-800 rounded-lg p-4 py-5 flex flex-col gap-[15px] min-h-50">
             <div class="flex flex-col gap-1">
 
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <a href="{{ route('dashboard') }}"
-            class="text-red-500 text-sm">Volver</a>
+            class="text-red-500 text-sm w-fit">Volver</a>
         </div>
     </div>
 </x-app-layout>

@@ -6,25 +6,25 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6">
-            <div class="overflow-hidden shadow-sm">
-                <div class="text-gray-100 ">
-                    <table class="bg-gray-800 rounded-lg w-full">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6">
+            <div class="overflow-hidden shadow-sm p-1 bg-gray-800 rounded-lg scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                <div class="text-gray-100 overflow-x-auto">
+                    <table class="rounded-lg w-full">
                         <thead>
-                            <tr class="border-b border-">
+                            <tr class="border-b border-gray-700">
                                 <th class="p-2">Contribuyente</th>
                                 <th class="p-2">DNI</th>
                                 <th class="p-2">Teléfono</th>
                                 <th class="p-2">Correo</th>
-                                <th class="p-2">Fecha del evento</th>
+                                <th class="p-2 min-w-40">Fecha del evento</th>
                                 <th class="p-2">Dirección</th>
                                 <th class="p-2">Detalles</th>
                                 <th class="p-2">Aceptar / Rechazar</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="">
                             @foreach($contribuyentes as $contribuyente)
-                            <tr>
+                            <tr class="">
                                 <td class="p-3 text-center text-sm">{{ $contribuyente->nombre }} {{ $contribuyente->apellido }} </td>
                                 <td class="p-3 text-center text-sm">{{ $contribuyente->dni }}</td>
                                 <td class="p-3 text-center text-sm">{{ $contribuyente->telefono }}</td>
