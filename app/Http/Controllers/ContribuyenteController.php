@@ -41,13 +41,13 @@ class ContribuyenteController extends Controller
         $contribuyente = Contribuyente::find($idContribuyente);
         $msg;
 
-        if ($request->aceptado === 'en espera' || $request->aceptado === 'rechazado') {
+        if ($request->aceptado === 'true') {
 
-            $contribuyente['aceptado'] = 'aceptado';
+            $contribuyente['aceptado'] = 'Aceptado';
             $msg = 'Contribuyente aceptado';
         } else {
 
-            $contribuyente['aceptado'] = 'rechazado';
+            $contribuyente['aceptado'] = 'Rechazado';
             $msg = 'Contribuyente rechazado';
         }
 

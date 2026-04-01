@@ -5,4 +5,20 @@
         </h2>
     </x-slot>   
 
+    <section class="py-12">
+        @foreach($contribuyentes as $contribuyente)
+        <article class="flex gap-2 flex-col ">
+            <div>
+
+                <div class="border-r border-gray-300">
+                    <h3>{{ $contribuyente->fecha_evento }}</h3>
+                </div>
+                <div>
+    
+                </div>
+            </div>
+        </article>
+        @endforeach
+    </section>
+
 </x-app-layout>

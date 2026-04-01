@@ -10,7 +10,10 @@ class ContribuyentesAceptados extends Controller
     
     function index() {
 
-        $contribuyentes = Contribuyente::where('aceptado', 'LIKE', 'aceptado')->paginate(10);
+        $contribuyentes = Contribuyente::where('aceptado', 'LIKE', 'aceptado')
+        ->orderByDesc('id')
+        ->paginate(7);
+        
         return view('contribuyentes-aceptados.index', compact('contribuyentes'));
     }
 }

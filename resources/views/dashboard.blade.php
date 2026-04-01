@@ -19,7 +19,7 @@
                                 <th class="p-2 min-w-40">Fecha del evento</th>
                                 <th class="p-2">Dirección</th>
                                 <th class="p-2">Detalles</th>
-                                <th class="p-2">Aceptar / Rechazar</th>
+                                <th class="p-2 min-w-40">Aceptar / Rechazar</th>
                             </tr>
                         </thead>
                         <tbody class="">
@@ -36,7 +36,7 @@
                                         class="text-blue-500">Más detalles</a>
                                 </td>
                                 <td class="p-3 flex gap-2 flex-col justify-between items-center">
-                                    <span class="font-bold border-b">{{ $contribuyente->aceptado ? 'Aceptado' : 'Rechazado' }}</span>
+                                    <span class="font-bold border-b">{{ $contribuyente->aceptado}}</span>
                                     <div class="flex flex-1 gap-2 w-full">
 
                                         <form action="{{ route('contribuyente.update', $contribuyente->id) }}"
