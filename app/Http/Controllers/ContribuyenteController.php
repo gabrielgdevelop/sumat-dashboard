@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contribuyente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContribuyenteController extends Controller
 {
@@ -54,6 +55,27 @@ class ContribuyenteController extends Controller
         $contribuyente->save();
 
         return redirect()->route('dashboard')->with('msg_upd', $msg);
+    }
+
+    public function graficaPorYear(Request $request) {
+
+        $year = $request->year;
+
+        $data = DB::table('contribuyentes')
+        ->selectRaw('EXTRACT(MONTH FROM fecha_evento) as mes, COUNT(*) as total')
+        ->where('aceptado', 'Aceptado')
+        ->whereYear('fecha_evento', $year)
+        ->groupBy('mes')
+        ->orderBy('mes')
+        ->get();
+
+        $meses = array_fill(1, 12, 0);
+
+        foreach ($data as $item) {
+            $meses[(int)$item->mes] = $item->total;
+        }
+
+        return response()->json(array_values($meses));
     }
 
     /**

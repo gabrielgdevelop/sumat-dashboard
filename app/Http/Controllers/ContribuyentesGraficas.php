@@ -4,32 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Contribuyente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ContribuyentesGraficas extends Controller
 {   
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
         
-        $year = $request->year;
-
-        $data = DB::table('contribuyentes')
-            ->selectRaw('EXTRACT(MONTH FROM fecha_evento) as mes, COUNT(*) as total')
-            ->where('aceptado', true)
-            ->whereYear('fecha_evento', $year)
-            ->groupBy('mes')
-            ->orderBy('mes')
+        $years = DB::table('contribuyentes')
+            ->selectRaw('EXTRACT(YEAR FROM fecha_evento) as year')
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
             ->get();
-
-        $meses = array_fill(1, 12, 0);
-
-        foreach ($data as $item) {
-            $meses[(int)$item->mes] = $item->total;
-        }
-
-        return response()->json(array_values($meses));
+        return view('contribuyentes-graficas.index', compact('years')); 
     }
 
     /**
