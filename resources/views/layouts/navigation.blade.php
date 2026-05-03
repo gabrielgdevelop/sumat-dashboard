@@ -21,6 +21,11 @@
                         {{ __('Contribuyentes aceptados') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('contribuyentes.dashboard')" :active="request()->routeIs('contribuyentes.dashboard')">
+                        {{ __('Dashboard Contribuyentes') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -79,6 +84,11 @@
         <div class="pt-2 pb-1 space-y-1">
             <x-responsive-nav-link :href="route('contribuyentes.aceptados')" :active="request()->routeIs('contribuyentes.aceptados')">
                 {{ __('Contribuyentes aceptados') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-1 space-y-1">
+            <x-responsive-nav-link :href="route('contribuyentes.dashboard')" :active="request()->routeIs('contribuyentes.dashboard')">
+                {{ __('Contribuyentes Dashboard') }}
             </x-responsive-nav-link>
         </div>
 
