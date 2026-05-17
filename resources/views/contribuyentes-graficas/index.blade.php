@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-cobalto leading-tight">
-                {{ __('Eventos Aceptados') }}
+                {{ __('Eventos Métricas') }}
             </h2>
         </div>
     </x-slot>
@@ -22,7 +22,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="w-[850px]">
+            <div class="min-w-200 w-full max-w-[850px]">
                 
                 <canvas id="chart"
                 class="w-full h-full bg-gray-200 text-cobalto"></canvas>

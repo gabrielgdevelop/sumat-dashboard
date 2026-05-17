@@ -15,13 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // Create or update a basic user for admin/testing
-        User::updateOrCreate(
-            ['email' => 'test@example.com'],
-            ['name' => 'Test User', 'cedula' => '12345678']
-        );
 
         // Seed parroquias and estados required by the application
         $this->call([

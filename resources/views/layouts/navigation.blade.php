@@ -18,12 +18,12 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('contribuyentes.aceptados')" :active="request()->routeIs('contribuyentes.aceptados')">
-                        {{ __('Contribuyentes aceptados') }}
+                        {{ __('Eventos Aceptados') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('contribuyentes.dashboard')" :active="request()->routeIs('contribuyentes.dashboard')">
-                        {{ __('Dashboard Contribuyentes') }}
+                        {{ __('Eventos Métricas') }}
                     </x-nav-link>
                 </div>
             </div>

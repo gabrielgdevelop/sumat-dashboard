@@ -24,7 +24,10 @@ return new class extends Migration
             ->constrained('estados')
             ->restrictOnDelete()
             ->cascadeOnUpdate();
-            $table->foreignId('parroquia_id')->nullable()->constrained('parroquias')->nullOnDelete();
+            $table->foreignId('parroquia_id')
+            ->nullable()
+            ->constrained('parroquias')
+            ->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

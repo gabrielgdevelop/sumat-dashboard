@@ -76,9 +76,10 @@ class ContribuyentesGraficas extends Controller
         $year = $request->input('year');
 
         $data = DB::table('eventos')
-            ->selectRaw('EXTRACT(MONTH FROM fecha_evento) as month, COUNT(*) as total')
+            ->join('parroquias', 'eventos.parroquia_id', '=', 'parroquias.id') // Unimos para traer el nombre
+            ->selectRaw('parroquias.nombre as parroquia, EXTRACT(MONTH FROM fecha_evento) as month, COUNT(*) as total')
             ->whereYear('fecha_evento', $year)
-            ->groupBy('month')
+            ->groupBy('parroquia', 'month')
             ->orderBy('month')
             ->get();
 

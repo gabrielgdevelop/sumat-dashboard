@@ -65,17 +65,6 @@
                         </div>
                     </div>
                 </div>
-                    {{-- <div class="bg-gray-800 border border-gray-700 rounded-lg p-3 w-full opacity-90">
-                        <div class="flex items-center justify-between mb-2">
-                            <div class="text-lg font-bold text-cobalto">{{ optional($pasado->contribuyente)->nombre }} {{ optional($pasado->contribuyente)->apellido }}</div>
-                            <div class="text-sm text-white/60">{{ $pasado->fecha_evento ? \Carbon\Carbon::parse($pasado->fecha_evento)->format('d/m/Y') : '' }}</div>
-                        </div>
-                        <div class="text-white/70">{{ optional($pasado->contribuyente)->rif }} - {{ optional($pasado->contribuyente)->telefono }}</div>
-                        <p class="text-white/60 mt-2">{{ $pasado->ubicacion_evento }}</p>
-                        @if($pasado->tipo_evento)
-                            <p class="text-white/50 mt-1">{{ $pasado->tipo_evento }}</p>
-                        @endif
-                    </div> --}}
                 @empty
                     <p class="text-gray-500 text-center py-10">No hay registros en el historial.</p>
                 @endforelse
