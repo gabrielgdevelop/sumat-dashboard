@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/contribuyente/{id}', [ContribuyenteController::class, 'update'])->name('contribuyente.update');
     Route::get('/contribuyentes-aceptados', [ContribuyentesAceptados::class, 'index'])->name('contribuyentes.aceptados');
     Route::get('/contribuyentes-dashboard', [ContribuyentesGraficas::class, 'index'])->name('contribuyentes.dashboard');
-    Route::post('/grafica/year', [ContribuyenteController::class, 'graficaPorYear']);
+    Route::post('/grafica/year', [ContribuyentesGraficas::class, 'graficaPorYear']);
 });
 
 require __DIR__.'/auth.php';

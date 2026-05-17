@@ -15,7 +15,7 @@ class ContribuyentesGraficas extends Controller
     public function index()
     {
         
-        $years = DB::table('contribuyentes')
+        $years = DB::table('eventos')
             ->selectRaw('EXTRACT(YEAR FROM fecha_evento) as year')
             ->groupBy('year')
             ->orderBy('year', 'desc')
@@ -69,5 +69,19 @@ class ContribuyentesGraficas extends Controller
     public function destroy(Contribuyente $contribuyente)
     {
         //
+    }
+
+    public function graficaPorYear(Request $request)
+    {
+        $year = $request->input('year');
+
+        $data = DB::table('eventos')
+            ->selectRaw('EXTRACT(MONTH FROM fecha_evento) as month, COUNT(*) as total')
+            ->whereYear('fecha_evento', $year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($data);
     }
 }

@@ -10,7 +10,7 @@ let chart = new Chart(ctx, {
             'Jul','Ago','Sep','Oct','Nov','Dic'
         ],
         datasets: [{
-            label: 'Contribuyentes aceptados',
+            label: 'Eventos aceptados',
             data: Array(12).fill(0),
         }]
     },
@@ -18,7 +18,7 @@ let chart = new Chart(ctx, {
         plugins: {
             legend: {
                 labels: {
-                    color: '#ffffff', // color del texto (leyenda)
+                    color: '#0055A4', // color del texto (leyenda)
                     font: {
                         size: 14 // tamaño leyenda
                     }
@@ -28,7 +28,7 @@ let chart = new Chart(ctx, {
         scales: {
             x: {
                 ticks: {
-                    color: '#ffffff', // meses
+                    color: '#0055A4', // meses
                     font: {
                         size: 14 // 👈 aumenta tamaño
                     }
@@ -39,7 +39,7 @@ let chart = new Chart(ctx, {
             },
             y: {
                 ticks: {
-                    color: '#ffffff', // números eje Y
+                    color: '#0055A4', // números eje Y
                     font: {
                         size: 14
                     }
@@ -54,7 +54,7 @@ let chart = new Chart(ctx, {
         title: {
             display: true,
             text: 'Contribuyentes Aceptados',
-            color: '#ffffff',
+            color: '#0055A4',
             font: {
                 size: 18,
                 weight: 'bold'
@@ -80,6 +80,7 @@ document.getElementById('yearSelect').addEventListener('change', async e => {
     const data = await res.json();
 
     // 🔥 actualizar gráfico
+    console.log(data);
     chart.data.datasets[0].data = data;
     chart.data.datasets[0].label = `Aceptados en ${year}`;
     chart.update();
