@@ -17,10 +17,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'cedula' => '12345678',
-            'email' => 'test@example.com',
+        // Create or update a basic user for admin/testing
+        User::updateOrCreate(
+            ['email' => 'test@example.com'],
+            ['name' => 'Test User', 'cedula' => '12345678']
+        );
+
+        // Seed parroquias and estados required by the application
+        $this->call([
+            ParroquiaSeeder::class,
+            EstadoSeeder::class,
         ]);
     }
 }

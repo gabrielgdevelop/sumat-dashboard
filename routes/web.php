@@ -16,7 +16,7 @@ Route::middleware('auth')->group(function () {
 
     // RUTAS PARA LOS CONTRIBUYENTES
     Route::get('/contribuyente-detalles/{id}', [ContribuyenteController::class, 'show'])->name('contribuyentes.show');
-    Route::get('/contribuyente/{id}', [ContribuyenteController::class, 'update'])->name('contribuyente.update');
+    Route::put('/contribuyente/{id}', [ContribuyenteController::class, 'update'])->name('contribuyente.update');
     Route::get('/contribuyentes-aceptados', [ContribuyentesAceptados::class, 'index'])->name('contribuyentes.aceptados');
     Route::get('/contribuyentes-dashboard', [ContribuyentesGraficas::class, 'index'])->name('contribuyentes.dashboard');
     Route::post('/grafica/year', [ContribuyenteController::class, 'graficaPorYear']);

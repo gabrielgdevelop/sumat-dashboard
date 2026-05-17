@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('contribuyentes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 15);
-            $table->string('apellido', 15);
-            $table->string('dni', 10)->unique();
-            $table->string('telefono', 11)->unique();
+            $table->string('nombre', 50);
+            $table->string('apellido', 50)->nullable();
+            $table->string('dni', 20)->unique();
+            $table->string('telefono', 20)->nullable();
             $table->string('correo', 100)->unique();
-            $table->string('ubicacion_evento', 100);
-            $table->string('rif', 11)->unique();
-            $table->date('fecha_evento', 10);
-            $table->string('tipo_evento', 255);
-            $table->string('aceptado')->default('En espera');
+            $table->string('rif', 20)->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

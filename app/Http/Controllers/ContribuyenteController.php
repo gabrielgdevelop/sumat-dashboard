@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contribuyente;
+use App\Models\Evento;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,9 +30,9 @@ class ContribuyenteController extends Controller
      */
     public function show($id)
     {
-        $contribuyente = Contribuyente::findOrFail($id);
-        
-        return view('contribuyentes.show', compact('contribuyente'));
+        $evento = Evento::findOrFail($id);
+
+        return view('contribuyentes.show', compact('evento'));
     }
 
     /**
@@ -39,20 +40,24 @@ class ContribuyenteController extends Controller
      */
     public function update(Request $request, $idContribuyente)
     {
-        $contribuyente = Contribuyente::find($idContribuyente);
-        $msg;
+        $evento = Evento::findOrFail($idContribuyente);
+
+        $estadoAceptado = Estado::where('nombre', 'aceptado')->first();
+        $estadoRechazado = Estado::where('nombre', 'rechazado')->first();
 
         if ($request->aceptado === 'true') {
-
-            $contribuyente['aceptado'] = 'Aceptado';
-            $msg = 'Contribuyente aceptado';
+            if ($estadoAceptado) {
+                $evento->id_estado = $estadoAceptado->id;
+            }
+            $msg = 'Evento aceptado';
         } else {
-
-            $contribuyente['aceptado'] = 'Rechazado';
-            $msg = 'Contribuyente rechazado';
+            if ($estadoRechazado) {
+                $evento->id_estado = $estadoRechazado->id;
+            }
+            $msg = 'Evento rechazado';
         }
 
-        $contribuyente->save();
+        $evento->save();
 
         return redirect()->route('dashboard')->with('msg_upd', $msg);
     }
@@ -61,7 +66,7 @@ class ContribuyenteController extends Controller
 
         $year = $request->year;
 
-        $data = DB::table('contribuyentes')
+        $data = DB::table('eventos')
         ->selectRaw('EXTRACT(MONTH FROM fecha_evento) as mes, COUNT(*) as total')
         ->where('aceptado', 'Aceptado')
         ->whereYear('fecha_evento', $year)

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dasboard;
-use App\Models\Contribuyente;
+use App\Models\Evento;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,8 +13,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $contribuyentes = Contribuyente::orderByDesc('id')->paginate(10);
-        return view('dashboard', compact(['contribuyentes']));
+        // buscar el id del estado 'pendiente'
+        $pendiente = Estado::where('nombre', 'pendiente')->first();
+        $pendienteId = $pendiente ? $pendiente->id : null;
+
+        if ($pendienteId) {
+            $eventos = Evento::with(['contribuyente', 'parroquia', 'estado'])
+                ->where('id_estado', $pendienteId)
+                ->orderByDesc('id')
+                ->paginate(10);
+        } else {
+            $eventos = Evento::with(['contribuyente', 'parroquia', 'estado'])
+                ->whereRaw('1 = 0')
+                ->paginate(10);
+        }
+
+        return view('dashboard', compact('eventos'));
     }
 
     /**

@@ -3,3 +3,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+
+	--color-cobalto: #0055A4;
+	--color-cobalto-dark: #004594;
+	--color-cian: #00ADEF;
+	--color-verde-lima: #8DC63F;
+	--color-blanco: #ffffff;
+}
+
+/* Simple utility classes that map to the landing color variables */
+.bg-cobalto { background-color: var(--color-cobalto); }
+.bg-cobalto:hover { background-color: var(--color-cobalto-dark); }
+.bg-cobalto-dark { background-color: var(--color-cobalto-dark); }
+.text-cobalto { color: var(--color-cobalto); }
+.text-cian { color: var(--color-cian); }
+.text-verde-lima { color: var(--color-verde-lima); }
+.text-blanco { color: var(--color-blanco); }
+.border-cobalto { border-color: var(--color-cobalto); }
+
+/* Input focus styles to match landing theme */
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="time"], textarea, select {
+	transition: border-color .12s ease, box-shadow .12s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+	outline: none;
+	border-color: var(--color-cobalto);
+	box-shadow: 0 0 0 4px rgba(0, 173, 239, 0.12);
+}
+
