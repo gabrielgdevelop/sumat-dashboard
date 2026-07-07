@@ -11,7 +11,8 @@ class Evento extends Model
     protected $fillable = [
         'ubicacion_evento',
         'fecha_evento',
-        'hora_evento',
+        'hora_inicio',
+        'hora_fin',
         'tipo_evento',
         'id_estado',
         'parroquia_id',

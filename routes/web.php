@@ -17,6 +17,14 @@ Route::middleware('auth')->group(function () {
     // RUTAS PARA LOS CONTRIBUYENTES
     Route::get('/contribuyente-detalles/{id}', [ContribuyenteController::class, 'show'])->name('contribuyentes.show');
     Route::put('/contribuyente/{id}', [ContribuyenteController::class, 'update'])->name('contribuyente.update');
+    Route::get('/contribuyentes/create', [ContribuyenteController::class, 'create'])->name('contribuyentes.create');
+    Route::post('/contribuyentes', [ContribuyenteController::class, 'store'])->name('contribuyentes.store');
+    Route::delete('/contribuyentes/{contribuyente}', [ContribuyenteController::class, 'destroy'])->name('contribuyentes.destroy');
+    // Admin contribuyentes module
+    Route::get('/admin/contribuyentes', [ContribuyenteController::class, 'adminIndex'])->name('contribuyentes.admin.index');
+    Route::get('/admin/contribuyentes/{contribuyente}', [ContribuyenteController::class, 'adminShow'])->name('contribuyentes.admin.show');
+    Route::get('/admin/contribuyentes/{contribuyente}/edit', [ContribuyenteController::class, 'adminEdit'])->name('contribuyentes.admin.edit');
+    Route::put('/admin/contribuyentes/{contribuyente}', [ContribuyenteController::class, 'adminUpdate'])->name('contribuyentes.admin.update');
     Route::get('/contribuyentes-aceptados', [ContribuyentesAceptados::class, 'index'])->name('contribuyentes.aceptados');
     Route::get('/contribuyentes-dashboard', [ContribuyentesGraficas::class, 'index'])->name('contribuyentes.dashboard');
     Route::post('/grafica/year', [ContribuyentesGraficas::class, 'graficaPorYear']);

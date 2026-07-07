@@ -35,7 +35,10 @@
                     <h4 class="text-cobalto font-semibold mb-2">Datos del evento</h4>
                     <div class="p-3 rounded-lg bg-gray-500">
                         <p class="text-white/80">Ubicación: {{ $evento->ubicacion_evento }}</p>
-                        <p class="text-white/80 mt-2">Hora: {{ $evento->hora_evento ? $evento->hora_evento : '—' }}</p>
+                        <p class="text-white/80 mt-2">Hora de inicio: {{ $evento->hora_inicio ? $evento->hora_inicio : '—' }}</p>
+                        <p class="text-white/80 mt-2">Hora de finalización: {{ $evento->hora_fin ? $evento->hora_fin : '—' }}</p>
+                        <p class="text-white/80 mt-2">Tipo: {{ $evento->tipo_evento ? $evento->tipo_evento : '—' }}</p>
+                        <p class="text-white/80 mt-2">Parroquia: {{ $evento->parroquia->nombre ? $evento->parroquia->nombre : '' }}</p>
                         @if(optional($evento->estado)->nombre)
                             <div class="mt-3">
                                 <span class="inline-block text-verde-lima text-xs px-2 py-1 rounded">{{ ucfirst(optional($evento->estado)->nombre) }}</span>

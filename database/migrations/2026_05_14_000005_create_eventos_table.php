@@ -18,7 +18,8 @@ return new class extends Migration
             ->nullOnDelete();
             $table->string('ubicacion_evento', 255)->nullable();
             $table->date('fecha_evento')->nullable();
-            $table->time('hora_evento')->nullable();
+            $table->time('hora_inicio')->nullable();
+            $table->time('hora_fin')->nullable()->after('hora_inicio');
             $table->string('tipo_evento')->nullable();
             $table->foreignId('id_estado')
             ->constrained('estados')
