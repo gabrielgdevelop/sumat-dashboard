@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContribuyenteController;
 use App\Http\Controllers\ContribuyentesAceptados;
 use App\Http\Controllers\ContribuyentesGraficas;
+use App\Http\Controllers\CalendarioAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/contribuyentes-aceptados', [ContribuyentesAceptados::class, 'index'])->name('contribuyentes.aceptados');
     Route::get('/contribuyentes-dashboard', [ContribuyentesGraficas::class, 'index'])->name('contribuyentes.dashboard');
     Route::post('/grafica/year', [ContribuyentesGraficas::class, 'graficaPorYear']);
+
+    Route::get('/calendario', [CalendarioAdminController::class, 'index'])->name('calendario.index');
 });
 
 require __DIR__.'/auth.php';
