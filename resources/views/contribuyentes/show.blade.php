@@ -29,7 +29,29 @@
                         <span class="text-white/90 bg-gray-500   px-3 py-1 rounded-full text-sm">Teléfono: {{ optional($evento->contribuyente)->telefono }}</span>
                         <span class="text-white/90 bg-gray-500   px-3 py-1 rounded-full text-sm">RIF: {{ optional($evento->contribuyente)->rif }}</span>
                     </div>
+                    <!-- Visualización del Documento (Cédula o RIF) -->
+                    @php
+                        $documento = optional($evento->contribuyente)->documentos()->where('tipo', 'identidad')->first();
+                    @endphp
+
+                    @if($documento)
+                        <div class="mt-4 p-3 bg-white/50 border border-gray-200 rounded-md">
+                            <h5 class="text-sm font-semibold text-gray-700 mb-2">Documento Adjunto (Cédula/RIF)</h5>
+                            <a href="{{ env('URL_LANDING') }}/storage/{{ $documento->ruta }}" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 bg-cobalto text-white text-sm font-medium rounded hover:opacity-90 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                Ver Documento
+                            </a>
+                        </div>
+                    @else
+                        <div class="mt-4 p-3 bg-red-50 border border-red-100 rounded-md">
+                            <p class="text-sm text-red-600">El contribuyente no ha adjuntado ningún documento.</p>
+                        </div>
+                    @endif
                 </div>
+                
 
                 <div>
                     <h4 class="text-cobalto font-semibold mb-2">Datos del evento</h4>

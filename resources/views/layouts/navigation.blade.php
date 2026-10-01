@@ -1,82 +1,116 @@
-<nav x-data="{ sidebarOpen: true, mobileOpen: false }" class="bg-[#9cb2bb] border-r border-gray-300 dark:border-gray-700 h-screen fixed inset-y-0 left-0 z-40 transition-all duration-300 flex flex-col justify-between"
-     :class="sidebarOpen ? 'w-64' : 'w-20'">
-    
-    <button @click="sidebarOpen = !sidebarOpen" 
-            class="hidden sm:flex absolute -right-3 top-6 bg-cobalto text-white rounded-full p-2 shadow-md hover:bg-opacity-90 focus:outline-none transition-transform duration-300"
-            :class="sidebarOpen ? '' : 'rotate-180'">
-        <span class="material-symbols-outlined text-sm">chevron_left</span>
-    </button>
+<!-- NAV CONTENEDOR PRINCIPAL -->
+<nav class="fixed top-0 left-0 h-screen bg-white shadow-[0_0_15px_rgba(0,0,0,0.05)] transition-all duration-500 z-50 py-2.5 px-3.5 flex flex-col"
+     :class="sidebarOpen ? 'w-[250px]' : 'w-[88px]'">
 
-    <div class="flex flex-col items-center pt-6 w-full px-4">
-        <div class="shrink-0 flex items-center justify-center mb-8 h-12">
-            <a href="{{ route('dashboard') }}" class="flex items-center gap-2">
-                <x-application-logo class="block h-9 w-auto fill-current text-gray-200" />
-            </a>
-        </div>
-
-        <div class="flex flex-col gap-2 w-full">
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" 
-                class="flex items-center gap-4 px-3 py-3 rounded-lg text-gray-200 hover:bg-white/10 transition-colors w-full {{ request()->routeIs('dashboard') ? 'bg-white/20 font-semibold text-white' : '' }}">
-                <span class="material-symbols-outlined min-w-[24px]">calendar_today</span>
-                <span x-show="sidebarOpen" x-transition.opacity class="text-sm truncate">Solicitudes</span>
-            </x-nav-link>
+    <!-- HEADER / LOGO -->
+    <header class="relative flex items-center h-14 mt-2">
+        <div class="flex items-center gap-3 w-full overflow-hidden">
+            <!-- Contenedor de la imagen: Restringe el ancho y centra -->
+            <span class="min-w-[60px] flex justify-center items-center shrink-0 transition-all duration-500">
+                <img src="{{ asset('imgs/logo-sumat.jpeg') }}" alt="Logo" 
+                     class="object-contain transition-all duration-500"
+                     :class="sidebarOpen ? 'w-10 h-10' : 'w-8 h-8'">
+            </span>
             
-            <x-nav-link :href="route('contribuyentes.aceptados')" :active="request()->routeIs('contribuyentes.aceptados')" 
-                class="flex items-center gap-4 px-3 py-3 rounded-lg text-gray-200 hover:bg-white/10 transition-colors w-full {{ request()->routeIs('contribuyentes.aceptados') ? 'bg-white/20 font-semibold text-white' : '' }}">
-                <span class="material-symbols-outlined min-w-[24px]">theater_comedy</span>
-                <span x-show="sidebarOpen" x-transition.opacity class="text-sm truncate">Eventos Aceptados</span>
-            </x-nav-link>
-            
-            <x-nav-link :href="route('contribuyentes.dashboard')" :active="request()->routeIs('contribuyentes.dashboard')" 
-                class="flex items-center gap-4 px-3 py-3 rounded-lg text-gray-200 hover:bg-white/10 transition-colors w-full {{ request()->routeIs('contribuyentes.dashboard') ? 'bg-white/20 font-semibold text-white' : '' }}">
-                <span class="material-symbols-outlined min-w-[24px]">monitoring</span>
-                <span x-show="sidebarOpen" x-transition.opacity class="text-sm truncate">Eventos Métricas</span>
-            </x-nav-link>
-            
-            <x-nav-link :href="route('contribuyentes.admin.index')" :active="request()->routeIs('contribuyentes.admin.index')" 
-                class="flex items-center gap-4 px-3 py-3 rounded-lg text-gray-200 hover:bg-white/10 transition-colors w-full {{ request()->routeIs('contribuyentes.admin.index') ? 'bg-white/20 font-semibold text-white' : '' }}">
-                <span class="material-symbols-outlined min-w-[24px]">group</span>
-                <span x-show="sidebarOpen" x-transition.opacity class="text-sm truncate">Contribuyentes</span>
-            </x-nav-link>
-        </div>
-    </div>
-
-    <div class="p-4 border-t border-white/20 w-full relative" x-data="{ profileOpen: false }">
-        
-        <div x-show="profileOpen" 
-             @click.outside="profileOpen = false"
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="transform opacity-0 scale-95 translate-y-2"
-             x-transition:enter-end="transform opacity-100 scale-100 translate-y-0"
-             x-transition:leave="transition ease-in duration-75"
-             x-transition:leave-start="transform opacity-100 scale-100 translate-y-0"
-             x-transition:leave-end="transform opacity-0 scale-95 translate-y-2"
-             class="absolute bottom-full left-4 right-4 mb-3 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50 flex flex-col"
-             style="display: none;">
-             
-            <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                <span class="material-symbols-outlined text-[18px] text-gray-500">manage_accounts</span>
-                {{ __('Perfil') }}
-            </a>
-            
-            <form method="POST" action="{{ route('logout') }}" class="m-0 border-t border-gray-100">
-                @csrf
-                <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-red-600 hover:bg-red-50 transition-colors">
-                    <span class="material-symbols-outlined text-[18px]">logout</span>
-                    {{ __('Cerrar sesión') }}
-                </button>
-            </form>
-        </div>
-
-        <button @click="profileOpen = !profileOpen" 
-                class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-white bg-cobalto hover:bg-opacity-90 focus:outline-none transition-all duration-200 w-full shadow-md">
-            <span class="material-symbols-outlined text-[20px]">account_circle</span>
-            <div x-show="sidebarOpen" x-transition.opacity class="font-medium text-sm truncate max-w-[100px]">
-                {{ Auth::user()->name }}
+            <div class="flex flex-col transition-all duration-300 whitespace-nowrap"
+                 :class="sidebarOpen ? 'opacity-100 w-auto' : 'opacity-0 w-0'">
+                <span class="font-semibold text-[18px] text-[#707070] mt-0.5">SUMAT</span>
+                <span class="font-medium text-[14px] text-[#707070] -mt-1 block">Panel Principal</span>
             </div>
-            <span x-show="sidebarOpen" 
-                  class="material-symbols-outlined text-[18px] transition-transform duration-300"
-                  :class="profileOpen ? 'rotate-180' : ''">arrow_drop_up</span>
-        </button>
+        </div>
+
+        <!-- Botón Toggle Circular -->
+        <div @click="sidebarOpen = !sidebarOpen" 
+             class="absolute top-1/2 -right-[26px] -translate-y-1/2 w-[25px] h-[25px] bg-[#695CFE] text-white rounded-full flex items-center justify-center text-[22px] cursor-pointer transition-transform duration-500 z-50"
+             :class="sidebarOpen ? 'rotate-180' : 'rotate-0'">
+            <i class='bx bx-chevron-right'></i>
+        </div>
+    </header>
+
+    <!-- MENÚ Y SCROLL (Aquí inicializamos la variable search para el buscador) -->
+    <div class="mt-10 flex flex-col justify-between h-[calc(100%-55px)] menu-bar overflow-y-auto" x-data="{ search: '' }">
+        <ul class="flex flex-col gap-2 m-0 p-0">
+            
+            <!-- Buscador -->
+            <li class="h-[50px] bg-[#F6F5FF] rounded-md flex items-center transition-all duration-500 cursor-pointer mb-2"
+                @click="sidebarOpen = true">
+                <i class="bx bx-search min-w-[60px] flex justify-center text-[20px] text-[#707070]"></i>
+                <input type="text" placeholder="Buscar..." 
+                       x-model="search"
+                       class="w-full h-full bg-transparent border-none outline-none text-[#707070] font-medium text-[16px] focus:ring-0 px-0"
+                       x-show="sidebarOpen">
+            </li>
+
+            <!-- Link: Contribuyentes (MOVIDO DE PRIMERO) -->
+            <li class="h-[50px] flex items-center group"
+                x-show="search === '' || $el.textContent.toLowerCase().includes(search.toLowerCase())">
+                <a href="{{ route('contribuyentes.admin.index') }}" 
+                   class="flex items-center w-full h-full rounded-md transition-all duration-300 {{ request()->routeIs('contribuyentes.admin.index') ? 'bg-[#695CFE] text-white' : 'text-[#707070] hover:bg-[#695CFE] hover:text-white' }}">
+                    <i class="bx bx-group min-w-[60px] flex justify-center text-[20px] transition-all duration-300"></i>
+                    <span class="font-medium text-[16px] transition-all duration-300 whitespace-nowrap overflow-hidden"
+                          :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0'">Contribuyentes</span>
+                </a>
+            </li>
+
+            <!-- Link: Solicitudes -->
+            <li class="h-[50px] flex items-center group" 
+                x-show="search === '' || $el.textContent.toLowerCase().includes(search.toLowerCase())">
+                <a href="{{ route('dashboard') }}" 
+                   class="flex items-center w-full h-full rounded-md transition-all duration-300 {{ request()->routeIs('dashboard') ? 'bg-[#695CFE] text-white' : 'text-[#707070] hover:bg-[#695CFE] hover:text-white' }}">
+                    <i class="bx bx-calendar-event min-w-[60px] flex justify-center text-[20px] transition-all duration-300"></i>
+                    <span class="font-medium text-[16px] transition-all duration-300 whitespace-nowrap overflow-hidden"
+                          :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0'">Solicitudes</span>
+                </a>
+            </li>
+
+            <!-- Link: Eventos Aceptados -->
+            <li class="h-[50px] flex items-center group"
+                x-show="search === '' || $el.textContent.toLowerCase().includes(search.toLowerCase())">
+                <a href="{{ route('contribuyentes.aceptados') }}" 
+                   class="flex items-center w-full h-full rounded-md transition-all duration-300 {{ request()->routeIs('contribuyentes.aceptados') ? 'bg-[#695CFE] text-white' : 'text-[#707070] hover:bg-[#695CFE] hover:text-white' }}">
+                    <i class="bx bx-check-square min-w-[60px] flex justify-center text-[20px] transition-all duration-300"></i>
+                    <span class="font-medium text-[16px] transition-all duration-300 whitespace-nowrap overflow-hidden"
+                          :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0'">Eventos Aceptados</span>
+                </a>
+            </li>
+
+            <!-- Link: Eventos Métricas (Reportes) -->
+            <li class="h-[50px] flex items-center group"
+                x-show="search === '' || $el.textContent.toLowerCase().includes(search.toLowerCase())">
+                <a href="{{ route('contribuyentes.dashboard') }}" 
+                   class="flex items-center w-full h-full rounded-md transition-all duration-300 {{ request()->routeIs('contribuyentes.dashboard') ? 'bg-[#695CFE] text-white' : 'text-[#707070] hover:bg-[#695CFE] hover:text-white' }}">
+                    <i class="bx bx-line-chart min-w-[60px] flex justify-center text-[20px] transition-all duration-300"></i>
+                    <span class="font-medium text-[16px] transition-all duration-300 whitespace-nowrap overflow-hidden"
+                          :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0'">Eventos Métricas</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- CONTENIDO INFERIOR -->
+        <div class="mt-4 border-t border-gray-100 pt-3">
+            <ul class="m-0 p-0">
+                <!-- Perfil -->
+                <li class="h-[50px] flex items-center group mb-1">
+                    <a href="{{ route('profile.edit') }}" 
+                       class="flex items-center w-full h-full rounded-md transition-all duration-300 text-[#707070] hover:bg-[#695CFE] hover:text-white">
+                        <i class="bx bx-user-circle min-w-[60px] flex justify-center text-[20px] transition-all duration-300"></i>
+                        <span class="font-medium text-[16px] transition-all duration-300 whitespace-nowrap overflow-hidden"
+                              :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0'">Mi Perfil</span>
+                    </a>
+                </li>
+
+                <!-- Cerrar Sesión -->
+                <li class="h-[50px] flex items-center group mb-3">
+                    <form method="POST" action="{{ route('logout') }}" class="w-full h-full m-0">
+                        @csrf
+                        <button type="submit" class="flex items-center w-full h-full rounded-md transition-all duration-300 text-[#707070] hover:bg-[#695CFE] hover:text-white">
+                            <i class="bx bx-log-out min-w-[60px] flex justify-center text-[20px] transition-all duration-300"></i>
+                            <span class="font-medium text-[16px] transition-all duration-300 whitespace-nowrap overflow-hidden text-left"
+                                  :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0'">Cerrar Sesión</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

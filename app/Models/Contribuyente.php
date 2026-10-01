@@ -21,4 +21,9 @@ class Contribuyente extends Model
     protected $hidden = [
         'password',
     ];
+
+    public function documentos()
+    {
+        return $this->morphMany(Documento::class, 'documentable');
+    }
 }

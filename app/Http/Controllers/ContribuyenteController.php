@@ -114,11 +114,13 @@ class ContribuyenteController extends Controller
             if ($estadoAceptado) {
                 $evento->id_estado = $estadoAceptado->id;
             }
+            $evento->motivo_rechazo = null; // Limpiamos si fue aceptado
             $msg = 'Evento aceptado';
         } else {
             if ($estadoRechazado) {
                 $evento->id_estado = $estadoRechazado->id;
             }
+            $evento->motivo_rechazo = $request->input('motivo_rechazo'); // Guardamos el motivo
             $msg = 'Evento rechazado';
         }
 

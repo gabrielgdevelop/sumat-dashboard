@@ -33,22 +33,36 @@
                         </div>
 
                         <div class="flex items-center gap-2">
-                            <a href="{{ route('contribuyentes.show', $evento->id) }}" class="text-cian hover:underline">Más detalles</a>
+                        <a href="{{ route('contribuyentes.show', $evento->id) }}" class="text-cian hover:underline">Más detalles</a>
 
-                            <form action="{{ route('contribuyente.update', $evento->id) }}" method="POST" class="inline-block">
-                                @csrf
-                                @method('PUT')
-                                <input type="text" value="true" name="aceptado" hidden>
-                                <button type="submit" class="bg-verde-lima bg-cobalto text-white border border-cobalto px-3 py-1 rounded-md font-semibold">Aceptar</button>
-                            </form>
+                        <form action="{{ route('contribuyente.update', $evento->id) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" value="true" name="aceptado">
+                            <button type="submit" class="bg-verde-lima bg-cobalto text-white border border-cobalto px-3 py-1 rounded-md font-semibold">Aceptar</button>
+                        </form>
 
-                            <form action="{{ route('contribuyente.update', $evento->id) }}" method="POST" class="inline-block">
-                                @csrf
-                                @method('PUT')
-                                <input type="text" value="" name="aceptado" hidden>
-                                <button type="submit" class="bg-red-500 text-blanco px-3 py-1 rounded-md font-semibold">Rechazar</button>
-                            </form>
-                        </div>
+                        <!-- Modal de Motivo de Rechazo -->
+                        <div x-data="{ openModal: false }" class="inline-block">
+                            <button @click="openModal = true" type="button" class="bg-red-500 text-blanco px-3 py-1 rounded-md font-semibold hover:bg-red-600 transition">Rechazar</button>
+
+                            <div x-show="openModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" x-cloak>
+                                <div @click.away="openModal = false" class="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
+                                    <h3 class="text-lg font-bold text-cobalto mb-4">Motivo de Rechazo</h3>
+                                    <form action="{{ route('contribuyente.update', $evento->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" value="false" name="aceptado">
+                                        <textarea name="motivo_rechazo" rows="3" class="w-full border border-gray-300 rounded p-2 mb-4 focus:ring-cobalto" placeholder="Explique por qué se deniega el permiso..." required></textarea>
+                                        <div class="flex justify-end gap-3">
+                                            <button @click="openModal = false" type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Cancelar</button>
+                                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md font-semibold">Confirmar Rechazo</button>
+                                        </div>
+                                    </form>
+            </div>
+        </div>
+    </div>
+</div>
                     </div>
                 @endforeach
 
