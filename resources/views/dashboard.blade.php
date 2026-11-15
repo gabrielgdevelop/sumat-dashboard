@@ -37,7 +37,9 @@
 
                         <!-- Botones apilados o envueltos en móviles -->
                         <div class="flex flex-wrap items-center gap-2 mt-2 xl:mt-0 xl:justify-end border-t border-gray-400/20 xl:border-0 pt-3 xl:pt-0">
-                            <a href="{{ route('contribuyentes.show', $evento->id) }}" class="text-cian hover:underline text-sm font-medium mr-2">Más detalles</a>
+                            <a href="{{ route('contribuyentes.show', $evento->id) }}" class="inline-flex items-center gap-1.5 rounded-md border border-cian/40 bg-cian/10 px-3 py-1.5 text-sm font-medium text-cobalto hover:bg-cian/20">
+                                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+                            </a>
 
                             <form action="{{ route('contribuyente.update', $evento->id) }}" method="POST" class="inline-block">
                                 @csrf

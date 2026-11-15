@@ -15,12 +15,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased text-gray-900 bg-gray-50">
-        <div x-data="{ sidebarOpen: true }" class="min-h-screen flex bg-white relative">
+        <div x-data="{ sidebarOpen: true, mobileOpen: false }" class="min-h-screen flex bg-white relative">
             
             @include('layouts.navigation')
 
-            <div class="w-full flex flex-col min-w-0 transition-all duration-300"
-                 :class="sidebarOpen ? 'sm:pl-64' : 'sm:pl-20'">
+              <div class="flex-1 flex flex-col min-w-0 transition-all duration-300"
+                  :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-20'">
                 
                 @isset($header)
                     <header class="bg-white  border-b border-gray-100 shadow-sm sticky top-0 z-30">
