@@ -1,5 +1,5 @@
 <!-- Envoltura global de Alpine para controlar el estado responsivo -->
-<div x-data="{ sidebarOpen: true, mobileOpen: false }">
+<div>
 
     <!-- HEADER MÓVIL (Solo visible en pantallas pequeñas) -->
     <div class="sm:hidden fixed top-0 left-0 right-0 h-16 bg-[#9cb2bb] flex items-center justify-between px-4 z-40 shadow-md">

@@ -2,9 +2,13 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-cobalto leading-tight">Contribuyente: {{ $contribuyente->nombre }} {{ $contribuyente->apellido }}</h2>
-            <div>
-                <a href="{{ route('contribuyentes.admin.edit', $contribuyente->id) }}" class="px-3 py-1 bg-cobalto text-blanco rounded">Editar</a>
-                <a href="{{ route('contribuyentes.admin.index') }}" class="ml-2 text-sm text-gray-600">Volver</a>
+            <div class="flex flex-wrap items-center gap-2">
+                <a href="{{ route('contribuyentes.admin.edit', $contribuyente->id) }}" class="inline-flex items-center gap-1.5 rounded-md bg-cobalto px-3 py-2 text-sm font-semibold text-blanco hover:bg-cobalto-dark">
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">edit</span>
+                </a>
+                <a href="{{ route('contribuyentes.admin.index') }}" class="inline-flex items-center gap-1.5 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_back</span>Volver
+                </a>
             </div>
         </div>
     </x-slot>
@@ -31,7 +35,9 @@
                                     <div class="font-medium">{{ $e->ubicacion_evento }}</div>
                                     <div class="text-sm text-gray-600">{{ $e->fecha_evento ? \Carbon\Carbon::parse($e->fecha_evento)->format('d/m/Y') : '' }} {{ $e->hora_inicio_evento ?? '' }} {{ $e->hora_fin_evento ? '- '.$e->hora_fin_evento : '' }}</div>
                                 </div>
-                                <a href="{{ route('contribuyentes.show', $e->id) }}" class="text-cian">Ver detalle</a>
+                                <a href="{{ route('contribuyentes.show', $e->id) }}" class="inline-flex items-center gap-1 rounded-md border border-cian/40 bg-cian/10 px-2.5 py-1.5 text-sm font-medium text-cobalto hover:bg-cian/20">
+                                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+                                </a>
                             </li>
                         @endforeach
                     </ul>

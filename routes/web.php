@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contribuyentes-aceptados', [ContribuyentesAceptados::class, 'index'])->name('contribuyentes.aceptados');
     Route::get('/contribuyentes-dashboard', [ContribuyentesGraficas::class, 'index'])->name('contribuyentes.dashboard');
     Route::post('/grafica/year', [ContribuyentesGraficas::class, 'graficaPorYear']);
+    Route::get('/reportes/datos', [ContribuyentesGraficas::class, 'graficaPorYear'])->name('contribuyentes.dashboard.data');
 
     Route::get('/calendario', [CalendarioAdminController::class, 'index'])->name('calendario.index');
 });

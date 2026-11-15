@@ -26,4 +26,9 @@ class Contribuyente extends Model
     {
         return $this->morphMany(Documento::class, 'documentable');
     }
+
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class);
+    }
 }

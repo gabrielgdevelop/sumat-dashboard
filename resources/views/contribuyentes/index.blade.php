@@ -31,13 +31,21 @@
                             <td class="py-2">{{ $c->telefono }}</td>
                             <td class="py-2">{{ $c->rif }}</td>
                             <td class="py-2">
-                                <a href="{{ route('contribuyentes.admin.show', $c->id) }}" class="text-cian mr-2">Ver</a>
-                                <a href="{{ route('contribuyentes.admin.edit', $c->id) }}" class="text-cobalto mr-2">Editar</a>
-                                <form action="{{ route('contribuyentes.destroy', $c->id) }}" method="POST" style="display:inline">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <a href="{{ route('contribuyentes.admin.show', $c->id) }}" title="Ver contribuyente" aria-label="Ver contribuyente" class="inline-flex items-center gap-1.5 rounded-md border border-cian/40 bg-cian/10 px-2.5 py-1.5 text-sm font-medium text-cobalto hover:bg-cian/20 focus:outline-none focus:ring-2 focus:ring-cian">
+                                        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+                                    </a>
+                                    <a href="{{ route('contribuyentes.admin.edit', $c->id) }}" title="Editar contribuyente" aria-label="Editar contribuyente" class="inline-flex items-center gap-1.5 rounded-md border border-cobalto/30 bg-cobalto/5 px-2.5 py-1.5 text-sm font-medium text-cobalto hover:bg-cobalto/10 focus:outline-none focus:ring-2 focus:ring-cobalto">
+                                        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">edit</span>
+                                    </a>
+                                    <form action="{{ route('contribuyentes.destroy', $c->id) }}" method="POST" class="inline-flex">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="text-red-600" onclick="return confirm('Eliminar contribuyente?')">Eliminar</button>
-                                </form>
+                                        <button type="submit" title="Eliminar contribuyente" aria-label="Eliminar contribuyente" class="inline-flex items-center gap-1.5 rounded-md border border-red-300 bg-red-50 px-2.5 py-1.5 text-sm font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500" onclick="return confirm('¿Eliminar contribuyente?')">
+                                            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">delete</span>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

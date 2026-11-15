@@ -25,7 +25,9 @@
                         </div>
                         
                         <div class="mt-4 flex gap-2">
-                            <a href="{{ route('contribuyentes.show', $evento->id) }}" class="px-3 py-1 bg-cobalto hover:bg-cobalto-dark text-blanco rounded">Ver detalle</a>
+                            <a href="{{ route('contribuyentes.show', $evento->id) }}" class="inline-flex items-center gap-1.5 rounded-md bg-cobalto px-3 py-2 text-sm font-semibold text-blanco hover:bg-cobalto-dark">
+                                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -61,7 +63,9 @@
                         </div>
                         
                         <div class="mt-4 flex gap-2">
-                            <a href="{{ route('contribuyentes.show', $pasado->id) }}" class="px-3 py-1 bg-cobalto hover:bg-cobalto-dark text-blanco rounded">Ver detalle</a>
+                            <a href="{{ route('contribuyentes.show', $pasado->id) }}" class="inline-flex items-center gap-1.5 rounded-md bg-cobalto px-3 py-2 text-sm font-semibold text-blanco hover:bg-cobalto-dark">
+                                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>Ver detalle
+                            </a>
                         </div>
                     </div>
                 </div>
